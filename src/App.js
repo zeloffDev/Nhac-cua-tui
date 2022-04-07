@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+import { createBrowserHistory } from "history";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import './App.css';
+import Test from "./Component/Test";
+import Home from "./pages/home/Home";
+import PlayListDetail from "./pages/playListDetail/PlayListDetail";
+import TimKiem from "./pages/timKiem/TimKiem";
+import { GetHomeAction } from "./redux/actions/GetHomeAction";
+import { HomeTemplate } from "./templates/homeTemplate/HomeTemplate";
+import LayOut2 from "./templates/homeTemplate/layout/LayOut2";
+export const history = createBrowserHistory();
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(GetHomeAction());
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      {/* <Router history={history}/> */}
+      {/* <LayOut2/> */}
+        <Switch>
+          <HomeTemplate exact path="/home" Component={Home} />
+          <HomeTemplate exact path="/timkiem" Component={TimKiem} />
+          <HomeTemplate exact path="/playlist/:id" Component={PlayListDetail} />
+          <HomeTemplate exact path="/" Component={Home} />
+        </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

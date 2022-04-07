@@ -1,0 +1,8 @@
+import { DISPLAY_SKELETION_TYPE, HIDE_SKELETION_TYPE } from "./type/SkeletionType"
+
+export const DISPLAY_SKELETION_ACTION={
+    type:DISPLAY_SKELETION_TYPE
+  }
+export const HIDE_SKELETION_ACTION={
+    type:HIDE_SKELETION_TYPE
+  }
