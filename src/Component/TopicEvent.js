@@ -3,7 +3,7 @@ import Card from "./card/Card";
 
 const TopicEvent = (props) => {
   const { TopicEvent } = props;
-  console.log(TopicEvent);
+
   return (
     <div className="container m-auto bg-gray-50">
       {TopicEvent?.map((item, index) => {

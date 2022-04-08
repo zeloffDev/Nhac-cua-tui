@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { history } from "../App";
 
 const Test = () => {
-  // console.log(history);
   return (
     <div>
       <Link to="/home">home</Link>

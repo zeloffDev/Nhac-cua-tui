@@ -11,7 +11,7 @@ export const GetHomeAction = () => {
       await dispatch(DISPLAY_SKELETION_ACTION);
       const result = await nhaccuatui.getHome();
       const result2 = await nhaccuatui.searchByKeyword(`bigbang`);
-      console.log(result2);
+
       await dispatch({
         type: GET_HOME_TYPE,
         data: result,

@@ -27,7 +27,7 @@ const stateDefaul = {
     streamUrls: [
       {
         quality: "128",
-        streamUrl: `https://f9-stream.nixcdn.com/NhacCuaTui1026/StillLife-BIGBANG-7182115.mp3?st=qJjnXfKghkOQ2wXfAhC7hQ&e=1649332734`
+        streamUrl: `https://f9-stream.nixcdn.com/NhacCuaTui1026/StillLife-BIGBANG-7182115.mp3?st=qJjnXfKghkOQ2wXfAhC7hQ&e=1649332734`,
       },
       { quality: "320", streamUrl: "" },
     ],
@@ -37,27 +37,27 @@ const stateDefaul = {
     type: "SONG",
     uploadBy: null,
   },
-  playList:'',
+  playList: "",
   list: [],
-  index:0
+  index: 0,
 };
 
 export const PlayReducer = (state = stateDefaul, action) => {
   switch (action.type) {
     case PLAY_TYPE: {
       state.song = action.data;
-      state.playList=action.playlist
-      state.index=action.index
+      state.playList = action.playlist;
+      state.index = action.index;
       return { ...state };
     }
-    case PLAY_LIST:{
-      state.list=action.data
-      console.log(action);
-      return {...state}
+    case PLAY_LIST: {
+      state.list = action.data;
+
+      return { ...state };
     }
-    case INDEX_TYPE:{
-        state.index = action.number
-      return {...state}
+    case INDEX_TYPE: {
+      state.index = action.number;
+      return { ...state };
     }
 
     default:

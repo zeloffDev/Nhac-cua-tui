@@ -9,38 +9,37 @@ import { INDEX_TYPE } from "../../redux/actions/type/PlayType";
 const Audio = (props) => {
   const dispatch = useDispatch();
   const { songs } = useSelector((state) => state.DataReducer);
-  const { index, song } = useSelector((state) => state.PlayReducer);  
-  const  result = useSelector((state) => state.PlayReducer);  
-  const audioRef = useRef(null)
-  
-  // console.log('-==================>',result);
-  // console.log(song);
-  const handleClickNext = () => {
+  const { index, song } = useSelector((state) => state.PlayReducer);
+  const result = useSelector((state) => state.PlayReducer);
+  const audioRef = useRef(null);
 
+  const handleClickNext = () => {
     dispatch({
       type: INDEX_TYPE,
-      number: songs.length-1 > index ? index+1 : 0,
+      number: songs.length - 1 > index ? index + 1 : 0,
     });
-    const key= songs.length-1 > index ? songs[index+1]?.key : songs[0]?.key;
-    
-    dispatch(PlayAction({ data: key, index:songs.length-1 > index ? index + 1 : 0 })); 
-    
-    }
+    const key =
+      songs.length - 1 > index ? songs[index + 1]?.key : songs[0]?.key;
+
+    dispatch(
+      PlayAction({ data: key, index: songs.length - 1 > index ? index + 1 : 0 })
+    );
+  };
 
   const handleClickPrev = () => {
     dispatch({
       type: INDEX_TYPE,
-      number: 0 < index ? index -1 : songs.length-1,
+      number: 0 < index ? index - 1 : songs.length - 1,
     });
-    const key= 0 < index ? songs[index-1]?.key : songs[songs.length-1]?.key;
-    
-    dispatch(PlayAction({ data: key, index: 0 < index ? index - 1 : songs.length-1 })); 
-      
-    }
+    const key =
+      0 < index ? songs[index - 1]?.key : songs[songs.length - 1]?.key;
 
-  useEffect(() => {
-    console.log(song)
-  }, [song]);
+    dispatch(
+      PlayAction({ data: key, index: 0 < index ? index - 1 : songs.length - 1 })
+    );
+  };
+
+  useEffect(() => {}, [song]);
 
   return (
     <AudioPlayer
@@ -72,32 +71,29 @@ export default Audio;
 //   ))
 // }
 
-
 // const handleClickPrev = (number) => {
-  //   if (0 < index) {
-  //     dispatch({
-  //       type: "INDEX_TYPE",
-  //       number: number,
-  //     });
-  //     dispatch(PlayAction({ data: keySongPrev, index: index - 1 }));
-  //   }
-  //   return;
+//   if (0 < index) {
+//     dispatch({
+//       type: "INDEX_TYPE",
+//       number: number,
+//     });
+//     dispatch(PlayAction({ data: keySongPrev, index: index - 1 }));
+//   }
+//   return;
 
+// const handleClickNext = (number) => {
+//   setCurrentID((preState) => (
+//     preState === songs.length -1 ? 0 : preState + 1
+//   ))
+//   const key=songs[currentID+1]?.key;
+//   dispatch(PlayAction({ data: key, index: currentID}));
+// }
 
+// const handleClickPrev = () => {
+//   setCurrentID((preState) => (
+//     preState === 0 ? songs.length - 1   : preState - 1
+//     ))
+//   const key=songs[currentID+1]?.key;
+//   dispatch(PlayAction({ data: key, index: currentID }));
 
-  // const handleClickNext = (number) => {
-  //   setCurrentID((preState) => (
-  //     preState === songs.length -1 ? 0 : preState + 1
-  //   ))
-  //   const key=songs[currentID+1]?.key;
-  //   dispatch(PlayAction({ data: key, index: currentID}));
-  // }
-
-  // const handleClickPrev = () => {
-  //   setCurrentID((preState) => (
-  //     preState === 0 ? songs.length - 1   : preState - 1
-  //     ))
-  //   const key=songs[currentID+1]?.key;
-  //   dispatch(PlayAction({ data: key, index: currentID }));
-
-  //   }
+//   }

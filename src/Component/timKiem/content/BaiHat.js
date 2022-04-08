@@ -4,11 +4,11 @@ import { PlayAction } from "../../../redux/actions/PlayAction";
 
 const BaiHat = ({ song }) => {
   const dispatch = useDispatch();
-  console.log(song);
+
   return (
     <div>
       <section className="text-gray-600 body-font">
-        <div className="flex flex-wrap w-full ">
+        <div className="flex flex-wrap w-full px-5">
           <div className="lg:w-1/2 pt-10 w-full  lg:mb-0">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
               Bài Hát

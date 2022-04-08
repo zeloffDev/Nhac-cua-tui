@@ -25,6 +25,7 @@ const Search = () => {
   };
 
   const onSelect = (value, option) => {
+    // console.log(value);
     dispatch(ResultSearchAction(option.label));
   };
 

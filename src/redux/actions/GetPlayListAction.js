@@ -10,7 +10,7 @@ export const GetPlayListAction = (id) => {
     dispatch(DISPLAY_SKELETION_ACTION);
     try {
       const result = await nhaccuatui.getPlaylistDetail(`${id}`);
-     console.log(result);
+
       await dispatch({
         type: GET_PLAY_LIST_TYPE,
         data: result,

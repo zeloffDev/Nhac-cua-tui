@@ -7,18 +7,15 @@ import Video from "./content/Video";
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-  console.log(key);
-}
+function callback(key) {}
 
 const Header = () => {
   const { search, resultSearch } = useSelector((state) => state.SearchReducer);
   const { playlist, song, video } = resultSearch;
 
-  console.log(resultSearch?.playlist);
   window.scrollTo(0, 0);
 
-  return resultSearch?.playlist?(
+  return resultSearch?.playlist ? (
     <div className="text-2xl ">
       <Tabs
         size="large"
@@ -43,9 +40,9 @@ const Header = () => {
         </TabPane>
       </Tabs>
     </div>
-  ):<div className="h-screen mt-5">
-    Bạn chưa tìm kiếm ...
-  </div>;
+  ) : (
+    <div className="h-screen mt-5">Bạn chưa tìm kiếm ...</div>
+  );
 };
 
 export default Header;

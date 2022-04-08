@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetPlayListAction } from "../../redux/actions/GetPlayListAction";
 import { PlayAction } from "../../redux/actions/PlayAction";
-import { Tag, Input } from 'antd';
+import { Tag, Input } from "antd";
 
 const PlayListDetail = (props) => {
   window.scrollTo(0, 0);
@@ -16,8 +16,16 @@ const PlayListDetail = (props) => {
   const { songs } = useSelector((state) => state.DataReducer);
 
   useEffect(() => {
+    dispatch(
+      PlayAction({
+        data: playlist?.songs ? playlist?.songs[0].key : "cDFnrv2kVpFu",
+        index: 0,
+      })
+    );
+  }, [playlist]);
+
+  useEffect(() => {
     dispatch(GetPlayListAction(id));
-    dispatch(PlayAction({ data:playlist?.songs? playlist?.songs[0].key:"cDFnrv2kVpFu" , index: 0 }));
   }, []);
 
   return (
@@ -41,11 +49,11 @@ const PlayListDetail = (props) => {
             <p className="m-0">tags :</p>
             <div className="grid grid-cols-6 gap-3 ">
               {playlist?.listTag.map((item, index) => {
-                if(index>5){
-                  return
+                if (index > 5) {
+                  return;
                 }
-                return (  
-                <button
+                return (
+                  <button
                     key={index}
                     className="truncate  bg-gray-300  px-4 rounded-lg ml-4 hover:scale-95 duration-200"
                   >
@@ -79,34 +87,38 @@ const PlayListDetail = (props) => {
       </div>
       <div className="mt-10  h-[500px] overflow-x-auto">
         <table className="w-full overflow-y-scroll  text-left ">
-          <tr className="font-medium bg-gray-50 truncate sticky top-0 left-0">
-            <th className="p-3">TIÊU ĐỀ</th>
-            <th className="p-3">NGHỆ SĨ</th>
-            <th className="p-3">LƯỢT NGHE</th>
-            <th className="p-3">THỜI GIAN</th>
-          </tr>
-          {playlist?.songs?.map((item, index) => {
-            return (
-              <tr
-                onClick={() => {
-                  dispatch(
-                    PlayAction({
-                      data: item.key,
-                      playlist: playlist?.title,
-                      index: index,
-                    })
-                  );
-                }}
-                key={index}
-                className="text-gray-400 truncate cursor-pointer hover:text-blue-400"
-              >
-                <td className="p-3">{item.title}</td>
-                <td className="p-3">{item.artists[0]?.name}</td>
-                <td className="p-3">{item.artists[0]?.artistId}</td>
-                <td className="p-3">{item.duration}</td>
-              </tr>
-            );
-          })}
+          <thead>
+            <tr className="font-medium bg-gray-50 truncate sticky top-0 left-0">
+              <th className="p-3">TIÊU ĐỀ</th>
+              <th className="p-3">NGHỆ SĨ</th>
+              <th className="p-3">LƯỢT NGHE</th>
+              <th className="p-3">THỜI GIAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            {playlist?.songs?.map((item, index) => {
+              return (
+                <tr
+                  onClick={() => {
+                    dispatch(
+                      PlayAction({
+                        data: item.key,
+                        playlist: playlist?.title,
+                        index: index,
+                      })
+                    );
+                  }}
+                  key={index}
+                  className="text-gray-400 truncate cursor-pointer hover:text-blue-400"
+                >
+                  <td className="p-3">{item.title}</td>
+                  <td className="p-3">{item.artists[0]?.name}</td>
+                  <td className="p-3">{item.artists[0]?.artistId}</td>
+                  <td className="p-3">{item.duration}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>
